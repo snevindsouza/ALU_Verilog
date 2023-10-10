@@ -1,4 +1,4 @@
-module alu_tb ;
+module testbench ;
     reg [3:0]a, b ;     //register declaration for a & b
     reg [1:0]select ;   //register declaration for select
     wire [3:0]out ;     //wire declaration for out
@@ -6,6 +6,8 @@ module alu_tb ;
 
     alu dut (.a(a), .b(b), .select(select), .zero(zero), .carry(carry), .sign(sign), .parity(parity), .overflow(overflow),.out(out));
     initial begin
+        $dumpfile("testbench.vcd");
+        $dumpvars(0,testbench);
         repeat(10) begin
             stimulus();#5;
             $display("a = %b, b = %b, select = %b, out = %b, zero = %b, carry = %b, sign =%b, parity = %b, overflow = %b", a, b, select, out, zero, carry, sign, parity, overflow);
